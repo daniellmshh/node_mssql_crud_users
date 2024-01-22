@@ -1,11 +1,11 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+// Carga las variables de entorno desde el archivo .env
+require('dotenv').config();
 
-app.get('/', (req, res) => {
-  res.send('¡Hola, mundo!');
-});
+// Importa la clase Server desde el modulo correspondiente
+const Server = require('./models/server');
 
-app.listen(port, () => {
-  console.log(`La aplicación está escuchando en http://localhost:${port}`);
-});
+// Crea una nueva instancia de la clase Server
+const server = new Server;
+
+// Inicia el servidor y comienza a escuchar las conexiones entrantes
+server.listen();
