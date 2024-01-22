@@ -1,0 +1,14 @@
+{
+  "name": "node_mssql_crud_users",
+  "version": "1.0.0",
+  "description": "Crud con conexion a MSSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Alvarado",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
