@@ -1,6 +1,7 @@
 // Modulos
 const express = require('express');
 const cors = require('cors');
+const { testConnection } = require('../database/connection');
 
 // Clase que representa un servidor basado en express
 class Server {
@@ -13,6 +14,8 @@ class Server {
         // Inicializa los middlewares y las rutas al crear una instancia del servidor
         this.middlewares();
         this.routes();
+
+        testConnection();
     };
 
     // Conigura y aplica los middlewares de la aplicacion
