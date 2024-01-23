@@ -11,6 +11,8 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
 
+        this.pathUsers = '/api/users';
+
         // Inicializa los middlewares y las rutas al crear una instancia del servidor
         this.middlewares();
         this.routes();
@@ -18,7 +20,7 @@ class Server {
         testConnection();
     };
 
-    // Conigura y aplica los middlewares de la aplicacion
+    // Configura y aplica los middlewares de la aplicacion
     middlewares(){
         this.app.use(express.json());
         this.app.use(cors());
