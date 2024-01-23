@@ -1,1 +1,68 @@
 const { response } = require('express');
+const { executeStoreProc } = require('../../database/connection');
+const { procedures, parameters } = require('./spsUsers');
+const { handleError, handleProcedureResult } = require('../../helpers/errorHandling');
+
+// Función para obtener información de un usuario
+const getUser = async (req, res = response) => {
+    try {
+        const userId = req.params.userId;
+        const result = await executeStoreProc(procedures.spUserGet, parameters.userGet(userId));
+        return res.status(200).json({ records: result });
+    } catch (error) {
+        handleError(res, error);
+    };
+};
+
+// Función para listar usuarios por pagina
+const listUsers = async (req, res = response) => {
+    try {
+        const { page, start, limit } = req.body;
+        const result = await executeStoreProc(procedures.spUsersToList, parameters.usersToList(page, start, limit));
+        return res.status(200).json({ records: result });  
+    } catch (error) {
+        handleError(res, error);
+    };
+};
+
+// Función para crear un usuario
+const createUser = async (req, res = response) => {
+    try {
+        const user = req.body;
+        const result = await executeStoreProc(procedures.spUserCreate, parameters.userCreate(user));
+        handleProcedureResult(res,result)
+    } catch (error) {
+        handleError(res,error);
+    };
+};
+
+// Función para editar un usuario
+const updateUser = async (req, res = response) => {
+    try {
+        const user = req.body;
+        const result = await executeStoreProc(procedures.spUserUpdate, parameters.userUpdate(user));
+        handleProcedureResult(res,result);
+    } catch (error) {
+        handleError(res,error);
+    };
+};
+
+// Función para cambiar estatus de un usuario
+const changeStatusUser = async () => {
+    try {
+        const user = req.body;
+        const result = await executeStoreProc(procedures.spChangeStatus, parameters.userUpdate(user));
+        handleProcedureResult(res, result);
+    } catch (error) {
+        handleError(res, error);
+    };
+};
+
+// Exportamos las funciones
+module.exports = {
+    getUser,
+    listUsers,
+    createUser,
+    updateUser,
+    changeStatusUser
+};

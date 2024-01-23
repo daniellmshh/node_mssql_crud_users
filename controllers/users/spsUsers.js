@@ -5,7 +5,7 @@ const procedures = {
    spUserCreate: 'sp_UserCreate',
    spUserGet: 'sp_UserGet',
    spUsersToList: 'sp_UsersToList',
-   spChangeStatus: 'sp_ChangeStatus'
+   spChangeStatus: 'sp_UserChangeStatus'
 };
 
 // Definicion de parametros para procedimientos almacenados

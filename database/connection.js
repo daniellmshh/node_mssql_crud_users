@@ -12,7 +12,7 @@ const poolConfig = {
 const pool = new sql.ConnectionPool({ ...config_db, ...poolConfig });
 
 // Funcion para conectar al pool
-const funGetConnection = async () => {
+const getConnection = async () => {
     console.log('llego al conect');
     try {
         if (!pool.connected) {
@@ -29,7 +29,7 @@ const funGetConnection = async () => {
 const testConnection = async () => {
     console.log('ejecuto el test');
     try {
-        const pool = await funGetConnection();
+        const pool = await getConnection();
         const result = await pool.request().query('SELECT 1 AS TestQuery');
         console.log('el resultado es: ', result);
         return result.recordset[0].TestQuery === 1;
@@ -42,7 +42,7 @@ const testConnection = async () => {
 // Funcion para ejecutar procedimientos almacenados con parametos
 const executeStoreProc = async (procName, parameters) => {
     try {
-        const pool = await funGetConnection();
+        const pool = await getConnection();
         const request = pool.request();
         parameters.forEach(param => request.input(param.name, param.type, param.value)); 
         const result = await request.execute(procName);    
@@ -75,7 +75,9 @@ process.on('SIGTERM', async () => {
 
 // Exportacion de funciones para manejo de conexion y pools
 module.exports = {
-    funGetConnection,
+    getConnection,
     closePool,
-    testConnection
+    testConnection,
+    sql,
+    executeStoreProc
 };
