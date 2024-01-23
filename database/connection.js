@@ -61,6 +61,7 @@ process.on('SIGTERM', async () => {
     process.exit(0);
 });
 
+// Exportacion de funciones para manejo de conexion y pools
 module.exports = {
     funGetConnection,
     closePool,
