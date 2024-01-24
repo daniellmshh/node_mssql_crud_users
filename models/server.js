@@ -11,6 +11,8 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
 
+        this.pathUsers = '/api/users';
+
         // Inicializa los middlewares y las rutas al crear una instancia del servidor
         this.middlewares();
         this.routes();
@@ -18,7 +20,7 @@ class Server {
         testConnection();
     };
 
-    // Conigura y aplica los middlewares de la aplicacion
+    // Configura y aplica los middlewares de la aplicacion
     middlewares(){
         this.app.use(express.json());
         this.app.use(cors());
@@ -30,6 +32,15 @@ class Server {
         // Ruta predeterminada para la URL raiz
         this.app.get('/', (req, res) => {
             res.send('¡Bienvenido al servidor!');
+        });
+
+        // Ruta para usuarios
+        this.app.use(this.pathUsers, require('../routes/users'));
+
+         // Manejador de errores global
+         this.app.use((err, req, res, next) => {
+            console.error(err.stack);
+            res.status(500).json({ success: false, error: 'Internal Server Error' });
         });
     };
 
