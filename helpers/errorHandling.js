@@ -1,9 +1,8 @@
 // Función para manejar el resultado de los procedimientos almacenados
 const handleProcedureResult = (res, result) => {
-    console.log('error de procedure');
     const { success, error, msg } = result;
     if (error) {
-        res.status(400).json({ success, error, msg });
+        res.status(400).json({ success: false, error, msg });
     } else {
         res.status(200).json({ success, error, msg });
     }
