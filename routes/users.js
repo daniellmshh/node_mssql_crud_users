@@ -13,7 +13,7 @@ const {
 const router = Router();
 
 // Configuracion de endpoints
-router.get(':userId', getUser);
+router.get('/:userId', getUser);
 router.get('/', listUsers);
 router.post('/', createUser);
 router.put('/', updateUser);

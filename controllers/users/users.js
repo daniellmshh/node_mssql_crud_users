@@ -17,7 +17,7 @@ const getUser = async (req, res = response) => {
 // Función para listar usuarios por pagina
 const listUsers = async (req, res = response) => {
     try {
-        const { page, start, limit } = req.body;
+        const { page, start, limit } = req.query;
         const result = await executeStoreProc(procedures.spUsersToList, parameters.usersToList(page, start, limit));
         return res.status(200).json({ records: result });  
     } catch (error) {

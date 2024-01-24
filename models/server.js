@@ -33,6 +33,15 @@ class Server {
         this.app.get('/', (req, res) => {
             res.send('¡Bienvenido al servidor!');
         });
+
+        // Ruta para usuarios
+        this.app.use(this.pathUsers, require('../routes/users'));
+
+         // Manejador de errores global
+         this.app.use((err, req, res, next) => {
+            console.error(err.stack);
+            res.status(500).json({ success: false, error: 'Internal Server Error' });
+        });
     };
 
     // Inicia el servidor y escucha las conexiones entrantes
