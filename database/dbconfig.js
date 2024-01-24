@@ -1,12 +1,12 @@
-// Objeto de configuracion para nuestra db
+// Objeto de configuración para nuestra db
 const config_db = {  
-    server: `34.70.72.199`,  
-    database: 'crud',
+    server: process.env.SSQL_SERVER,  
+    database: process.env.MSSQL_DB,
     authentication: {
         type: 'default',
         options: {
-            userName:  'sqlserver', 
-            password:  'jimudev'
+            userName:  process.env.MSSQL_USER_PROD, 
+            password:  process.env.MSSQL_PASSWORD_PROD
         }
     },
     options: {

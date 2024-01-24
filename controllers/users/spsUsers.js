@@ -1,6 +1,6 @@
 const sql = require('mssql')
 
-// Definicion de procedimientos almacenados
+// Definición de procedimientos almacenados
 const procedures = {
    userCreate: 'sp_UserCreate',
    userUpdate: 'sp_UserUpdate',
@@ -9,7 +9,7 @@ const procedures = {
    userChangeStatus: 'sp_UserChangeStatus'
 };
 
-// Definicion de parametros para procedimientos almacenados
+// Definición de parametros para procedimientos almacenados
 const parameters = {
     userCreate: (user) => [
         { name: 'first_name', type: sql.VarChar, value: user.firstName },
@@ -45,6 +45,7 @@ const parameters = {
     ]
 };
 
+// Exportamos nuestros objetos
 module.exports = {
     procedures,
     parameters

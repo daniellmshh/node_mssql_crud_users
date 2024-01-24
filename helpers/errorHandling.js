@@ -10,7 +10,6 @@ const handleProcedureResult = (res, result) => {
 
 // Función para manejar errores
 const handleError = (res, error) => {
-    console.log(error);
     res.status(500).json({
         success: false,
         error: 1,

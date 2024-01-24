@@ -13,7 +13,6 @@ const pool = new sql.ConnectionPool({ ...config_db, ...poolConfig });
 
 // Funcion para conectar al pool
 const getConnection = async () => {
-    console.log('llego al conect');
     try {
         if (!pool.connected) {
             await pool.connect();

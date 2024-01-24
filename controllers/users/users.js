@@ -40,7 +40,6 @@ const createUser = async (req, res = response) => {
 const updateUser = async (req, res = response) => {
     try {
         const user = req.body;
-        console.log(user);
         const result = await executeStoreProc(procedures.userUpdate, parameters.userUpdate(user));
         handleProcedureResult(res,result);
     } catch (error) {
