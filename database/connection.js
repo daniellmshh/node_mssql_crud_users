@@ -40,13 +40,14 @@ const testConnection = async () => {
 };
 
 // Funcion para ejecutar procedimientos almacenados con parametos
-const executeStoreProc = async (procName, parameters) => {
+const executeStoreProc = async (procName, parameters, list = 0) => {
     try {
         const pool = await getConnection();
         const request = pool.request();
         parameters.forEach(param => request.input(param.name, param.type, param.value)); 
-        const result = await request.execute(procName);    
-        return result.recordset[0]
+        const result = await request.execute(procName);
+        resultReturn = list !== 0 ? result.recordset : result.recordset[0];
+        return resultReturn
     } catch (error) {
         throw error;
     };

@@ -16,7 +16,7 @@ const router = Router();
 router.get('/:userId', getUser);
 router.get('/', listUsers);
 router.post('/', createUser);
-router.put('/', updateUser);
+router.put('/us', updateUser);
 router.delete('/', changeStatusUser);
 
 // Exportamos nuestro router
