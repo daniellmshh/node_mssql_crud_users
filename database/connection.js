@@ -1,7 +1,7 @@
 const sql = require('mssql');
 const { config_db } = require('./dbconfig');
 
-// Configuracion de pool de conexiones
+// Configuración de pool de conexiones
 const poolConfig = {
     max: 100,
     min: 0,
@@ -11,7 +11,7 @@ const poolConfig = {
 // Crear el pool de conexiones
 const pool = new sql.ConnectionPool({ ...config_db, ...poolConfig });
 
-// Funcion para conectar al pool
+// Función para conectar al pool
 const getConnection = async () => {
     try {
         if (!pool.connected) {
@@ -24,7 +24,7 @@ const getConnection = async () => {
     };
 };
 
-// Funcion para probar la coneccion a la base de datos
+// Funcion para probar la conexión a la base de datos
 const testConnection = async () => {
     console.log('ejecuto el test');
     try {
@@ -38,7 +38,7 @@ const testConnection = async () => {
     }
 };
 
-// Funcion para ejecutar procedimientos almacenados con parametos
+// Función para ejecutar procedimientos almacenados con parametos
 const executeStoreProc = async (procName, parameters, list = 0) => {
     try {
         const pool = await getConnection();
@@ -52,7 +52,7 @@ const executeStoreProc = async (procName, parameters, list = 0) => {
     };
 };
 
-// Funcion para cerrar el pool
+// Función para cerrar el pool
 const closePool = async () => {
     try {
         await pool.close();
@@ -73,7 +73,7 @@ process.on('SIGTERM', async () => {
     process.exit(0);
 });
 
-// Exportacion de funciones para manejo de conexion y pools
+// Exportación de funciones para manejo de conexión y pools
 module.exports = {
     getConnection,
     closePool,
