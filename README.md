@@ -1,4 +1,4 @@
-# Node.js SQL Practice Project
+# Api Nodejs with SQL Server
 
 Este proyecto en Node.js utiliza Express para practicar el establecimiento de una conexión a una base de datos SQL y ejecutar stored procedures con múltiples parámetros. El enfoque principal del proyecto es el flujo de usuarios.
 
